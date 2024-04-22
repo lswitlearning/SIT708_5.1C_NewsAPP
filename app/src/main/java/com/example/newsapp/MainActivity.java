@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         List<String> horizontalContent = Arrays.asList(
-                "This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news.",
+                "This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news.",
                 "This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. ",
                 "This is good evening news. This is good evening news. This is good evening news. This is good evening news. This is good evening news. This is good evening news. This is good evening news. ",
                 "This is how are you news. This is how are you news. This is how are you news. This is how are you news. This is how are you news. This is how are you news. This is how are you news. "
