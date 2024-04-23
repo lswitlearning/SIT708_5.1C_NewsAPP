@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Horizontal RecyclerView的數據源
+        // Data source for the horizontal RecyclerView
         List<String> horizontalTitles = Arrays.asList(
                 "Good Morning",
                 "Good Afternoon",
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.h_img4
         );
 
+
         List<String> horizontalContent = Arrays.asList(
                 "This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news. This is good morning news.This is good morning news. This is good morning news.",
                 "This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. This is good afternoon news. ",
@@ -55,20 +56,20 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
-        // 設置水平RecyclerView
+        // Setup the horizontal RecyclerView
         horizontalRv = findViewById(R.id.horizontalRv);
         HorizontalAdapter horizontalAdapter = new HorizontalAdapter(horizontalTitles, horizontalImages);
         horizontalRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         horizontalRv.setAdapter(horizontalAdapter);
 
 
-        // 设置监听器，在点击时启动新闻详情页面
+        // Set a click listener to launch NewsDetailActivity with the selected news details
         horizontalAdapter.setOnItemClickListener(position -> {
             String title = horizontalTitles.get(position);
             int imageResId = horizontalImages.get(position);
             String content = horizontalContent.get(position);
 
-            // 启动新闻详情活动
+            // Start the NewsDetailActivity
             Intent intent = new Intent(this, NewsDetailActivity.class);
             intent.putExtra("title", title);
             intent.putExtra("imageResId", imageResId);
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         horizontalRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         horizontalRv.setAdapter(horizontalAdapter);
 
-        // 垂直RecyclerView的數據源
+        // Data source for the vertical RecyclerView
         List<String> verticalTitles = Arrays.asList(
                 "News 1",
                 "News 2",
@@ -114,19 +115,19 @@ public class MainActivity extends AppCompatActivity {
                 "This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8. This is News 8."
         );
 
-        // 設置垂直RecyclerView
+        // Setup the vertical RecyclerView
         verticalRv = findViewById(R.id.verticalRv);
         VerticalAdapter verticalAdapter = new VerticalAdapter(verticalTitles, verticalImages);
         verticalRv.setLayoutManager(new GridLayoutManager(this, 2));
         verticalRv.setAdapter(verticalAdapter);
 
-        // 设置监听器
+        // Set a click listener for the vertical RecyclerView
         verticalAdapter.setOnItemClickListener(position -> {
             String title = verticalTitles.get(position);
             int imageResId = verticalImages.get(position);
             String content = verticalContent.get(position); // 获取相应的内容
 
-            // 创建Intent，并传递数据
+            // Create an intent to launch NewsDetailActivity with the relevant data
             Intent intent = new Intent(MainActivity.this, NewsDetailActivity.class);
             intent.putExtra("title", title);
             intent.putExtra("imageResId", imageResId);

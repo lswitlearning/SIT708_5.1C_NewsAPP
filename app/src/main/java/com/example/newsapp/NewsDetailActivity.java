@@ -20,33 +20,33 @@ public class NewsDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_details);
 
-// 获取传递的数据
-        Intent intent = getIntent(); // 获取Intent
-        String newsTitle = intent.getStringExtra("title"); // 获取标题
-        int newsImageResId = intent.getIntExtra("imageResId", -1); // 获取图片资源ID
-        String content = intent.getStringExtra("content"); // 获取新闻内容
+        // Get the data passed from the previous activity
+        Intent intent = getIntent();
+        String newsTitle = intent.getStringExtra("title");
+        int newsImageResId = intent.getIntExtra("imageResId", -1);
+        String content = intent.getStringExtra("content");
 
-        // 获取布局中的视图
-        TextView titleTextView = findViewById(R.id.news_title); // 获取标题的TextView
-        ImageView newsImageView = findViewById(R.id.news_image); // 获取图片的ImageView
-        TextView newsContentTextView = findViewById(R.id.news_content); // 获取内容的TextView
+        // Find the views in the layout
+        TextView titleTextView = findViewById(R.id.news_title);
+        ImageView newsImageView = findViewById(R.id.news_image);
+        TextView newsContentTextView = findViewById(R.id.news_content);
 
-        // 设置标题
+        // Set the news title
         if (newsTitle != null) {
             titleTextView.setText(newsTitle);
         }
 
-        // 设置图片
+        // Set the news image
         if (newsImageResId != -1) {
             newsImageView.setImageResource(newsImageResId);
         }
 
-        // 设置内容
+        // Set the news content
         if (content != null) {
             newsContentTextView.setText(content);
         }
 
-        // 配置推荐新闻的 RecyclerView
+        // Configure the RecyclerView for recommended news
         RecyclerView recommendedRv = findViewById(R.id.recommended_news);
         recommendedRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -72,6 +72,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         );
 
+        // Data for vertical titles, images, and content
         List<String> verticalTitles = Arrays.asList(
                 "News 1",
                 "News 2",
@@ -106,12 +107,12 @@ public class NewsDetailActivity extends AppCompatActivity {
         );
 
 
-        // 新的推荐新闻列表，排除当前新闻
+        // Create recommended news lists excluding the current news item
         List<String> recommendedTitles = new ArrayList<>();
         List<Integer> recommendedImages = new ArrayList<>();
         List<String> recommendedContent = new ArrayList<>();
 
-        // 合并水平和垂直的所有数据
+        // Combine all titles, images, and content into a single list for filtering
         List<String> allTitles = new ArrayList<>();
         List<Integer> allImages = new ArrayList<>();
         List<String> allContent = new ArrayList<>();
@@ -127,7 +128,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
 
 
-        // 过滤掉当前新闻
+        // Add to recommended lists if not the current news item
         for (int i = 0; i < allTitles.size(); i++) {
             if (!allTitles.get(i).equals(newsTitle) && allImages.get(i) != newsImageResId) {
                 recommendedTitles.add(allTitles.get(i));
@@ -136,17 +137,17 @@ public class NewsDetailActivity extends AppCompatActivity {
             }
         }
 
-        // 创建和设置 RecommendedAdapter
+        // Create and set up the RecommendedAdapter
         RecommendedAdapter recommendedAdapter = new RecommendedAdapter(recommendedTitles, recommendedImages);
 
-        // 设置点击事件处理逻辑
+        // Set a click listener for the recommended items
         recommendedAdapter.setOnItemClickListener(position -> {
-            // 获取推荐新闻的标题和图片
+
             String recommendedTitle = recommendedTitles.get(position);
             int recommendedImageResId = recommendedImages.get(position);
             String relatedContent = recommendedContent.get(position);
 
-            // 启动新的新闻详情活动
+            // Launch NewsDetailActivity for the recommended news
             Intent newIntent = new Intent(this, NewsDetailActivity.class);
             newIntent.putExtra("title", recommendedTitle);
             newIntent.putExtra("imageResId", recommendedImageResId);
@@ -155,6 +156,7 @@ public class NewsDetailActivity extends AppCompatActivity {
             startActivity(newIntent);
         });
 
+        // Set the adapter for the recommended RecyclerView
         recommendedRv.setAdapter(recommendedAdapter);
     }
 }
